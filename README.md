@@ -14,6 +14,7 @@ The core physics engine is written in Object-Oriented C++ to leverage high-speed
 * **3D Spin Ice Thermodynamics:** Generates a 16-basis tetrahedral lattice to calculate Energy, Magnetisation, Specific Heat ($C_v$), and Magnetic Susceptibility ($\chi$) across varying temperatures.
 * **Residual Entropy Calculation:** Simulates the highly degenerate "two-in, two-out" ground state of Spin Ice at near-zero Kelvin (in zero magnetic field) to observe Pauling's residual entropy plateau.
 * **Data Visualization CLI:** A Python `argparse` tool utilizing Pandas and Matplotlib to cleanly generate publication-ready plots.
+* **Multithreaded Performance:** Utilizes modern C++17 `<future>` and `<thread>` libraries to dispatch embarrassingly parallel Monte Carlo simulations across multiple CPU cores, drastically reducing computation time.
 
 ## Results & Physics
 
@@ -33,19 +34,34 @@ As temperature approaches absolute zero ($T \to 0$) in the absence of an externa
 By integrating the specific heat capacity over the temperature range, the simulation successfully observes the entropy plateauing at $\approx \frac{1}{2} \ln(\frac{3}{2})$, perfectly matching theoretical predictions.
 
 ![Spin Ice Residual Entropy Plateau](figures/Spin_Ice_Entropy.png)
----
+
+## Compilation
+
+Because Monte Carlo simulations are computationally heavy, it is critical to compile the C++ scripts with the `-O3` optimization flag. 
+
+Open your terminal, navigate to the root directory of the project, and compile the code using the following commands:
+
+**Standard Single-Core Simulations:**
+g++ -O3 -std=c++17 src/spin_ice.cpp -o spin_ice
+g++ -O3 -std=c++17 src/low_temp_entropy.cpp -o low_temp_entropy
+
+**Multi-Core Simulations:**
+g++ -O3 -std=c++17 src/spin_ice_parallel.cpp -o spin_ice_parallel
+g++ -O3 -std=c++17 src/low_temp_entropy_parallel.cpp -o low_temp_entropy_parallel
 
 ## Project Structure
 
 ```text
 Spin-Ice-Simulation/
 ├── src/
-│   ├── spin_ice.cpp             # Main thermodynamics simulation
-│   └── low_temp_entropy.cpp     # Zero B-field entropy simulation
+│   ├── spin_ice.cpp                  # Main thermodynamics simulation
+│   ├── spin_ice_parallel.cpp         # Multithreaded thermodynamics
+│   ├── low_temp_entropy.cpp          # Zero B-field entropy simulation
+│   └── low_temp_entropy_parallel.cpp # Multithreaded entropy
 ├── scripts/
-│   └── plot_spin_ice.py         # Data visualization CLI
-├── data/                        # Output datasets (.txt)
-├── figures/                     # Generated plots (.png)
-├── requirements.txt             # Python dependencies
+│   └── plot_spin_ice.py              # Data visualization CLI
+├── data/                             # Output datasets (.txt)
+├── figures/                          # Generated plots (.png)
+├── requirements.txt                  # Python dependencies
 └── README.md
 

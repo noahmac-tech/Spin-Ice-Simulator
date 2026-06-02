@@ -59,7 +59,7 @@ def plot_spin_ice_thermodynamics(data_file="data/data_spin_ice.txt"):
     print(f"Saved: {fig2_path}")
 
 
-def plot_low_temp_entropy(data_file="data_low_temp_entropy.txt"):
+def plot_low_temp_entropy(data_file="data/data_low_temp_entropy.txt"):
     """
     Calculates and plots the residual entropy of the Spin Ice model at low temperatures 
     by integrating the specific heat.

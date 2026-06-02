@@ -109,7 +109,9 @@ def plot_low_temp_entropy(data_file="data/data_low_temp_entropy.txt"):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate plots for the Spin Ice Monte Carlo Simulation.")
     parser.add_argument('--plot', type=str, choices=['thermo', 'entropy', 'all'], default='all',
-                        help="Choose which plot to generate: 'thermo' (Energy/Magnetisation), 'entropy' (Residual Entropy), or 'all'.")
+                        help="Choose which plot to generate: 'thermo', 'entropy', or 'all'.")
+    parser.add_argument('--parallel', action='store_true', 
+                        help="Read data from the multithreaded simulations (*_parallel.txt)")
     parser.add_argument('--show', action='store_true', 
                         help="Flag to display the plots interactively after saving.")
 
@@ -117,11 +119,22 @@ if __name__ == "__main__":
 
     print("Generating plots...")
     
+    # Determine which files to read and what to name the output images based on the parallel flag
+    if args.parallel:
+        thermo_data = "data/data_spin_ice_parallel.txt"
+        entropy_data = "data/data_low_temp_entropy_parallel.txt"
+        prefix = "Spin_Ice_Parallel"
+    else:
+        thermo_data = "data/data_spin_ice.txt"
+        entropy_data = "data/data_low_temp_entropy.txt"
+        prefix = "Spin_Ice"
+
+    # Call the plotting functions with dynamic variables
     if args.plot in ['thermo', 'all']:
-        plot_spin_ice_thermodynamics()
+        plot_spin_ice_thermodynamics(data_file=thermo_data, output_prefix=prefix)
         
     if args.plot in ['entropy', 'all']:
-        plot_low_temp_entropy()
+        plot_low_temp_entropy(data_file=entropy_data, output_prefix=prefix)
 
     if args.show:
         plt.show()

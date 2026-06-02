@@ -1,0 +1,16 @@
+# Build directories
+build/
+bin/
+
+# OS generated files
+.DS_Store
+
+# Data and generated images
+*.txt
+!CMakeLists.txt
+!requirements.txt
+
+# Python Virtual Environments
+venv/
+.venv/
+env/

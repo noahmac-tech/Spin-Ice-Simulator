@@ -30,3 +30,22 @@ Spin-Ice-Simulation/
 ├── figures/                     # Generated plots (.png)
 ├── requirements.txt             # Python dependencies
 └── README.md
+
+## Results & Physics
+
+The simulations successfully capture the thermodynamic behavior of frustrated magnetic systems. Below are the key findings from the 3D Spin Ice model.
+
+### 1. Spin Ice Thermodynamics
+By simulating the system across a range of temperatures, we can observe the standard thermodynamic properties. As the temperature drops, the system minimizes its energy, and the specific heat capacity ($C_v$) peaks, indicating a transition into the ice-rule state.
+
+![Spin Ice Energy and Specific Heat](figures/Spin_Ice_Energy_Cv.png)
+*(Note: If your file is named differently, like Figure_4a_Energy_Cv.png, replace the path above!)*
+
+### 2. Pauling's Residual Entropy
+A key highlight of this project is the numerical recovery of **Pauling's Residual Entropy**. 
+
+As temperature approaches absolute zero ($T \to 0$) in the absence of an external magnetic field, the Spin Ice system does not settle into a single unique ground state. Instead, it enters a highly degenerate manifold dictated by the "ice rules" (two spins pointing in, two pointing out of each tetrahedron). 
+
+By integrating the specific heat capacity over the temperature range, the simulation successfully observes the entropy plateauing at $\approx \frac{1}{2} \ln(\frac{3}{2})$, perfectly matching theoretical predictions.
+
+![Spin Ice Residual Entropy Plateau](figures/Spin_Ice_Entropy.png)

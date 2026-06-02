@@ -15,22 +15,6 @@ The core physics engine is written in Object-Oriented C++ to leverage high-speed
 * **Residual Entropy Calculation:** Simulates the highly degenerate "two-in, two-out" ground state of Spin Ice at near-zero Kelvin (in zero magnetic field) to observe Pauling's residual entropy plateau.
 * **Data Visualization CLI:** A Python `argparse` tool utilizing Pandas and Matplotlib to cleanly generate publication-ready plots.
 
----
-
-## Project Structure
-
-```text
-Spin-Ice-Simulation/
-├── src/
-│   ├── spin_ice.cpp             # Main thermodynamics simulation
-│   └── low_temp_entropy.cpp     # Zero B-field entropy simulation
-├── scripts/
-│   └── plot_spin_ice.py         # Data visualization CLI
-├── data/                        # Output datasets (.txt)
-├── figures/                     # Generated plots (.png)
-├── requirements.txt             # Python dependencies
-└── README.md
-
 ## Results & Physics
 
 The simulations successfully capture the thermodynamic behavior of frustrated magnetic systems. Below are the key findings from the 3D Spin Ice model.
@@ -49,3 +33,19 @@ As temperature approaches absolute zero ($T \to 0$) in the absence of an externa
 By integrating the specific heat capacity over the temperature range, the simulation successfully observes the entropy plateauing at $\approx \frac{1}{2} \ln(\frac{3}{2})$, perfectly matching theoretical predictions.
 
 ![Spin Ice Residual Entropy Plateau](figures/Spin_Ice_Entropy.png)
+---
+
+## Project Structure
+
+```text
+Spin-Ice-Simulation/
+├── src/
+│   ├── spin_ice.cpp             # Main thermodynamics simulation
+│   └── low_temp_entropy.cpp     # Zero B-field entropy simulation
+├── scripts/
+│   └── plot_spin_ice.py         # Data visualization CLI
+├── data/                        # Output datasets (.txt)
+├── figures/                     # Generated plots (.png)
+├── requirements.txt             # Python dependencies
+└── README.md
+
